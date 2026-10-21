@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="en-US" demote-non-dropping-particle="sort-only">
+  <info>
+    <title>Advanced Control for Applications: Engineering and Industrial Systems — Published-Article Bracketed Style</title>
+    <title-short>Advanced Control for Applications — Published Articles [n]</title-short>
+    <id>https://raw.githubusercontent.com/MiladMHB7/Advanced-Control/main/advanced-control-for-applications-published-articles-bracketed.csl</id>
+    <link href="https://raw.githubusercontent.com/MiladMHB7/Advanced-Control/main/advanced-control-for-applications-published-articles-bracketed.csl" rel="self"/>
+    <link href="https://onlinelibrary.wiley.com/page/journal/25780727/homepage/author-guidelines" rel="documentation"/>
+    <link href="https://onlinelibrary.wiley.com/journal/25780727" rel="documentation"/>
+    <author><name>Custom CSL derived from published articles of Advanced Control for Applications: Engineering and Industrial Systems</name></author>
+    <category citation-format="numeric"/>
+    <category field="engineering"/>
+    <eissn>2578-0727</eissn>
+    <summary>Independent numbered CSL reproducing bracketed, baseline (non-superscript) citations observed in 2025–2026 published articles of Advanced Control for Applications: Engineering and Industrial Systems, with reference-list formatting modeled on the journal's published articles. This variant matches the bracketed citation format seen in published articles, while the journal's online author-guidelines page separately specifies superscript citations.</summary>
+    <updated>2026-10-21T20:00:00+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License.</rights>
+  </info>
+
+  <locale xml:lang="en-US">
+    <style-options punctuation-in-quote="true"/>
+    <terms>
+      <term name="et-al">et al.</term>
+    </terms>
+  </locale>
+
+  <macro name="authors">
+    <names variable="author">
+      <name initialize-with=". " and="text" delimiter=", " delimiter-precedes-last="always" delimiter-precedes-et-al="always"/>
+      <et-al font-style="normal"/>
+      <substitute>
+        <names variable="editor">
+          <name initialize-with=". " and="text" delimiter=", " delimiter-precedes-last="always"/>
+        </names>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="authors-conference">
+    <names variable="author">
+      <name initialize-with=". " and="text" delimiter=", " delimiter-precedes-last="always" delimiter-precedes-et-al="never" et-al-min="4" et-al-use-first="1"/>
+      <et-al font-style="normal"/>
+    </names>
+  </macro>
+
+  <macro name="editors">
+    <names variable="editor">
+      <name initialize-with=". " and="text" delimiter=", " delimiter-precedes-last="always"/>
+    </names>
+  </macro>
+
+  <macro name="year">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="doi-or-url">
+    <choose>
+      <if variable="DOI">
+        <text variable="DOI" prefix="https://doi.org/"/>
+      </if>
+      <else-if variable="URL">
+        <text variable="URL"/>
+      </else-if>
+    </choose>
+  </macro>
+
+  <macro name="journal-core">
+    <group delimiter=" ">
+      <text macro="authors" suffix=","/>
+      <text variable="title" quotes="true" suffix=","/>
+      <text variable="container-title" font-style="italic"/>
+      <group delimiter=", ">
+        <text variable="volume"/>
+        <group delimiter=" ">
+          <text value="no."/>
+          <text variable="issue"/>
+        </group>
+      </group>
+      <group delimiter="">
+        <text macro="year" prefix="(" suffix=")"/>
+        <choose>
+          <if variable="page">
+            <text variable="page" prefix=": "/>
+          </if>
+        </choose>
+      </group>
+    </group>
+  </macro>
+
+  <macro name="journal">
+    <group delimiter=" ">
+      <choose>
+        <if variable="volume">
+          <text macro="journal-core" suffix="."/>
+        </if>
+        <else-if variable="DOI URL" match="any">
+          <text macro="journal-core" suffix=","/>
+        </else-if>
+        <else>
+          <text macro="journal-core" suffix="."/>
+        </else>
+      </choose>
+      <text macro="doi-or-url"/>
+    </group>
+  </macro>
+
+  <macro name="book">
+    <group delimiter=" ">
+      <text macro="authors" suffix="."/>
+      <text variable="title" font-style="italic" suffix="."/>
+      <group delimiter="">
+        <text variable="publisher-place" suffix=": "/>
+        <text variable="publisher"/>
+        <text macro="year" prefix="; " suffix="."/>
+      </group>
+      <text variable="ISBN" prefix="ISBN " suffix="."/>
+      <text macro="doi-or-url"/>
+    </group>
+  </macro>
+
+  <macro name="chapter">
+    <group delimiter=" ">
+      <text macro="authors"/>
+      <text macro="year" suffix="."/>
+      <text variable="title" quotes="true" suffix="."/>
+      <text value="in"/>
+      <text variable="container-title" font-style="italic" suffix="."/>
+      <choose>
+        <if is-numeric="edition">
+          <number variable="edition" form="long-ordinal" text-case="capitalize-first" suffix=" Ed.,"/>
+        </if>
+        <else-if variable="edition">
+          <text variable="edition" suffix=" Ed.,"/>
+        </else-if>
+      </choose>
+      <choose>
+        <if variable="editor">
+          <group delimiter=" ">
+            <text value="edited by"/>
+            <text macro="editors" suffix=","/>
+          </group>
+        </if>
+      </choose>
+      <group delimiter="">
+        <text variable="publisher-place" suffix=": "/>
+        <text variable="publisher" suffix="."/>
+      </group>
+      <text variable="ISBN" prefix="ISBN " suffix="."/>
+      <text macro="doi-or-url"/>
+    </group>
+  </macro>
+
+  <macro name="conference">
+    <group delimiter=" ">
+      <group delimiter=" " suffix=".">
+        <text macro="authors-conference" suffix=","/>
+        <text variable="title" quotes="true" suffix=","/>
+        <text value="in"/>
+        <text variable="container-title" font-style="italic" suffix=","/>
+      <choose>
+        <if variable="editor">
+          <group delimiter=" ">
+            <text value="ed."/>
+            <text macro="editors" suffix=","/>
+          </group>
+        </if>
+      </choose>
+      <choose>
+        <if variable="collection-title">
+          <text variable="collection-title" font-style="italic"/>
+          <text variable="volume"/>
+        </if>
+        <else>
+          <text variable="volume" prefix="vol. "/>
+        </else>
+      </choose>
+      <group delimiter="">
+        <text macro="year" prefix="(" suffix=")"/>
+        <text variable="page" prefix=": "/>
+      </group>
+      </group>
+      <text macro="doi-or-url"/>
+    </group>
+  </macro>
+
+  <macro name="other">
+    <group delimiter=" ">
+      <text macro="authors" suffix=","/>
+      <text variable="title" quotes="true" suffix=","/>
+      <text variable="container-title" font-style="italic"/>
+      <text variable="publisher"/>
+      <text macro="year" prefix="(" suffix=")"/>
+      <text variable="page" prefix=": "/>
+      <text macro="doi-or-url"/>
+    </group>
+  </macro>
+
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=", ">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <bibliography second-field-align="flush" entry-spacing="0" line-spacing="1" et-al-min="7" et-al-use-first="3">
+    <layout>
+      <text variable="citation-number" suffix="."/>
+      <choose>
+        <if type="article-journal article-magazine article-newspaper" match="any">
+          <text macro="journal"/>
+        </if>
+        <else-if type="chapter entry-encyclopedia entry-dictionary" match="any">
+          <text macro="chapter"/>
+        </else-if>
+        <else-if type="paper-conference">
+          <text macro="conference"/>
+        </else-if>
+        <else-if type="book">
+          <text macro="book"/>
+        </else-if>
+        <else>
+          <text macro="other" suffix="."/>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
